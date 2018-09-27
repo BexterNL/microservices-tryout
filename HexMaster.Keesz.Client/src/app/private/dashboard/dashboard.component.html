@@ -1,0 +1,42 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+    <div class="row" *ngIf="gameStats">
+      <div class="col-6 col-lg-3 tile">
+        <div class="metric blue" title="Total active games">
+          <h1>{{gameStats.activeGames}}</h1>
+          <div class="icon">
+            <i class="fa fa-heartbeat"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 tile">
+        <div class="metric purple" title="Total friends">
+          <h1>{{gameStats.friends}}</h1>
+          <div class="icon">
+            <i class="fa fa-user-circle-o"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 tile">
+        <div class="metric cyan" title="Total annual games">
+          <h1>{{gameStats.annualGames}}</h1>
+          <div class="icon">
+            <i class="fa fa-tachometer"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 tile">
+        <div class="metric green" title="Total annual games won">
+          <h1>{{gameStats.annualWon}}</h1>
+          <div class="icon">
+            <i class="fa fa-thumbs-up"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

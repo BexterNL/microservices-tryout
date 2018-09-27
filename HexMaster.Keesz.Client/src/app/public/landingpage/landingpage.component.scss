@@ -1,0 +1,54 @@
+.paral {
+  min-height: 900px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  padding: 0;
+  .background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.75);
+    min-height: 900px;
+  }
+  p {
+    color: #fff;
+  }
+  h1 {
+    font-size: 128px;
+    padding-top: 200px;
+    color: #fff;
+  }
+}
+p {
+  font-size: 24px;
+  text-align: center;
+}
+p.small {
+  font-size: 16px;
+}
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  font-size: 64px;
+  text-align: center;
+}
+
+.paralsec {
+  background-image: url('/assets/img/background.jpg');
+}
+
+.paralsec1 {
+  background-image: url('/assets/img/board.jpg');
+}
+
+.jumbotron {
+  margin-bottom: 0;
+}
+
+/* Footer */
+.footer {
+  padding: 1rem 0;
+  text-align: center;
+  color: #ccc;
+  background-color: #222;
+}

@@ -1,0 +1,171 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1>Friends</h1>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" href="#friends" role="tab" data-toggle="tab">
+              Friends
+              <span class="badge badge-primary" *ngIf="friends">{{friends.length}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#requests" role="tab" data-toggle="tab">
+              Invited
+              <span class="badge badge-primary" *ngIf="invitedFriends">{{invitedFriends.length}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#waiting" role="tab" data-toggle="tab">
+              Waiting for confirmation
+              <span [className]="requestedFriends.length > 0 ? 'badge badge-warning' : 'badge badge-secondary'" *ngIf="requestedFriends">{{requestedFriends.length}}</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="friends">
+            <app-loading-component *ngIf="loading"></app-loading-component>
+            <div class="friends">
+              <div class="empty-state" *ngIf="!loading && friends?.length == 0">
+                <div class="icon">
+                  <i class="fa fa-frown-o"></i>
+                </div>
+                <h1>Too bad</h1>
+                <p>You don't appear to have any friends ;)</p>
+                <p>Become the most popular dude of the web, and <a (click)="modalPopup('new-friend')" href="javascript:void(0);">invite
+                    some friends</a></p>
+              </div>
+            </div>
+            <div class="friends" *ngIf="!loading && friends?.length > 0">
+              <table class="table">
+                <thead>
+                  <tr class="d-flex">
+                    <th class="col-10" scope="col">Name</th>
+                    <th class="col-2" scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex" *ngFor="let friend of friends">
+                    <td class="col-10">{{friend.name}}</td>
+                    <td class="col-2"><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="requests">
+            <app-loading-component *ngIf="loading"></app-loading-component>
+            <div class="friends">
+              <div class="empty-state" *ngIf="!loading && invitedFriends?.length == 0">
+                <div class="icon">
+                  <i class="fa fa-frown-o"></i>
+                </div>
+                <h1>Don't you know them?</h1>
+                <p>You have no pending invitations waiting for confirmation</p>
+                <p>Be the initiator and <a (click)="modalPopup('new-friend')" href="javascript:void(0);">invite
+                    some friends</a></p>
+              </div>
+            </div>
+            <div class="friends" *ngIf="!loading && invitedFriends?.length > 0">
+              <table class="table">
+                <thead>
+                  <tr class="d-flex">
+                    <th class="col-10" scope="col">Name</th>
+                    <th class="col-2" scope="col">Expiration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex" *ngFor="let friend of invitedFriends">
+                    <td class="col-10">{{friend.name}}</td>
+                    <td class="col-2">{{friend.requestExpiresOn | date : short}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="waiting">
+            <app-loading-component *ngIf="loading"></app-loading-component>
+            <div class="friends">
+              <div class="empty-state" *ngIf="!loading && requestedFriends?.length == 0">
+                <div class="icon">
+                  <i class="fa fa-frown-o"></i>
+                </div>
+                <h1>You're not invited</h1>
+                <p>Have you always been lonely? Ask your friends to invite you to the party</p>
+                <p>Or be the initiator and <a (click)="modalPopup('new-friend')" href="javascript:void(0);">invite
+                    them yourself</a></p>
+              </div>
+            </div>
+            <div class="friends" *ngIf="!loading && requestedFriends?.length > 0">
+              <table class="table">
+                <thead>
+                  <tr class="d-flex">
+                    <th class="col-8" scope="col">Name</th>
+                    <th class="col-2" scope="col">Expiration</th>
+                    <th class="col-2" scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex" *ngFor="let invite of requestedFriends">
+                    <td class="col-8">{{invite.name}}</td>
+                    <td class="col-2">{{invite.expiresOn | date : short}}</td>
+                    <td class="col-2"><button type="button" class="btn btn-primary btn-sm" (click)="acceptInvitation(invite)">Accept</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <eke-modal id="new-friend">
+    <div class="invite-box">
+      <i class="fa fa-close close-button" (click)="closePopup('new-friend')"></i>
+      <h1>Invite new friends</h1>
+      <div class="search">
+        <div class="form">
+          <div class="row">
+            <div class="col-12">
+              <input type="text" name="searchString" placeholder="Enter a username" class="searchText" [(ngModel)]="searchString"
+                (ngModelChange)="searchStringChanged($event)">
+              <button id="searchButton"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 ">
+            <div class="results" *ngIf="searchResults && searchResults.length > 0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-10">Name</th>
+                    <th scope="col" class="col-2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let result of searchResults">
+                    <td>{{result.name}}</td>
+                    <td><button type="button" class="btn btn-primary btn-sm" (click)="inviteUser(result.id, 'new-friend')">Invite</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="no-results" *ngIf="!searchResults || searchResults.length == 0">
+              <div class="empty-state">
+                <h1>No results</h1>
+                <p>Your query returns no results...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </eke-modal>

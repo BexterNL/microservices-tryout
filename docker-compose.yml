@@ -1,0 +1,99 @@
+version: '3.4'
+
+services:
+    www.keesz.int:
+        image: www.keesz.int
+        hostname: www.keesz.int
+        build:
+            context: .
+            dockerfile: HexMaster.Keesz.Client/Dockerfile
+        depends_on:
+            - api.keesz.int
+
+    api.keesz.int:
+        image: api.keesz.int
+        hostname: api.keesz.int
+        build:
+            context: .
+            dockerfile: HexMaster.Keesz.Api/Dockerfile
+        depends_on:
+            - connect.keesz.int
+            - game.keesz.int
+        networks:
+            - api_backend
+
+    game.keesz.int:
+        image: game.keesz.int
+        hostname: game.keesz.int
+        build:
+            context: .
+            dockerfile: HexMaster.Keesz.Game/Dockerfile
+        depends_on:
+            - mongo
+            - rabbitmq
+        networks:
+            - api_backend
+
+    connect.keesz.int:
+        image: connect.keesz.int
+        hostname: connect.keesz.int
+        build:
+            context: .
+            dockerfile: HexMaster.Keesz.Connect/Dockerfile
+        depends_on:
+            - mongo
+            - rabbitmq
+        networks:
+            - api_backend
+
+    live.keesz.int:
+        image: live.keesz.int
+        hostname: live.keesz.int
+        build:
+            context: .
+            dockerfile: HexMaster.Keesz.Live/Dockerfile
+        depends_on:
+            - mongo
+            - rabbitmq
+        networks:
+            - api_backend
+
+#    identity.keesz.int:
+#        image: identity.keesz.int
+#        hostname: identity.keesz.int
+#        build:
+#            context: .
+#            dockerfile: HexMaster.Keesz.Identity/Dockerfile
+#        depends_on:
+#            - mongo
+#            - rabbitmq
+#        networks:
+#            - api_backend
+#
+    rabbitmq:
+        image: 'rabbitmq:3-management'
+        hostname: 'rabbitmq'
+        environment:
+            RABBITMQ_DEFAULT_USER: 'rabbitmq'
+            RABBITMQ_DEFAULT_PASS: 'rabbitmq'
+            RABBITMQ_DEFAULT_VHOST: '/'
+        ports:
+            - '15672:15672'
+            - '5672:5672'
+        networks:
+            - api_backend
+
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - '27017:27017'
+        networks:
+            - api_backend
+
+networks:
+    api_backend:
+        driver: 'bridge'

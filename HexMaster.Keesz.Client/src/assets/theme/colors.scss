@@ -1,0 +1,121 @@
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900
+  ),
+  $grays
+);
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    'blue': $blue,
+    'indigo': $indigo,
+    'purple': $purple,
+    'pink': $pink,
+    'red': $red,
+    'orange': $orange,
+    'yellow': $yellow,
+    'green': $green,
+    'teal': $teal,
+    'cyan': $cyan,
+    'white': $white,
+    'gray': $gray-600,
+    'gray-dark': $gray-800
+  ),
+  $colors
+);
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark
+  ),
+  $theme-colors
+);
+
+$body-bg: $gray-800;
+$body-color: $gray-400;
+
+$link-color: $gray-400;
+$link-decoration: none;
+$link-hover-color: $white;
+$link-hover-decoration: none;
+
+$border-width: 0px;
+$border-color: transparent;
+
+$border-radius: 0.25rem;
+$border-radius-lg: 0.3rem;
+$border-radius-sm: 0.2rem;
+
+$nav-tabs-border-color: $gray-800;
+$nav-tabs-border-width: $border-width;
+$nav-tabs-border-radius: $border-radius;
+$nav-tabs-link-hover-border-color: $gray-200 $gray-200 $nav-tabs-border-color;
+$nav-tabs-link-active-color: $gray-300;
+$nav-tabs-link-active-bg: $gray-700;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg;
+
+@import '~node_modules/bootstrap/scss/bootstrap';
+
+.bg-dark {
+  .navbar {
+    background-color: $gray-900 !important;
+  }
+}
+
+.tab-content {
+  background-color: $gray-700;
+  padding: 20px;
+}

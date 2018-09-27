@@ -1,0 +1,122 @@
+{
+  "ReRoutes": [
+
+
+    {
+      "DownstreamPathTemplate": "/api/games/stats",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "game.keesz.int",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/games/stats",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+
+
+    {
+      "UpstreamPathTemplate": "/users",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/users",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ]
+    },
+
+
+
+    {
+      "UpstreamPathTemplate": "/friends",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/friends",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/friends/search",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/users/search",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/friends/invite/{userId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/friends/{userId}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/invite/{id}/accept",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/friends/{id}/accept",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/friends/invites",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/friends/invites",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "connect.keesz.int",
+          "Port": 80
+        }
+      ]
+    }
+
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:54600"
+  }
+}

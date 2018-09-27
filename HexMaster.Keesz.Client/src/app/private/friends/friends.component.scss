@@ -1,0 +1,59 @@
+@import '../../../assets/theme/colors.scss';
+
+.tab-pane {
+  min-height: 460px;
+}
+.friends {
+  .empty-state {
+    padding: 20px;
+    width: 640px;
+    height: 230px;
+    overflow: hidden;
+    margin: auto;
+    .icon {
+      float: right;
+      margin: 30px;
+      opacity: 0.3;
+      i {
+        font-size: 256px;
+      }
+    }
+  }
+}
+
+.invite-box {
+  .close-button {
+    cursor: pointer;
+    float: right;
+  }
+  .search {
+    .form {
+      input.searchText {
+        width: 90%;
+        border: solid 1px $gray-600;
+        border-radius: 8px 0 0 8px;
+        background: $gray-700;
+        color: $body-color;
+        padding-left: 10px;
+      }
+      button {
+        width: 10%;
+        border: solid 1px $gray-600;
+        border-radius: 0 8px 8px 0;
+        background: $gray-700;
+        color: $body-color;
+      }
+    }
+    .results {
+      height: 480px;
+      margin-top: 20px;
+      overflow-y: scroll;
+    }
+    .no-results {
+      height: 480px;
+      margin-top: 20px;
+      text-align: center;
+      opacity: 0.3;
+    }
+  }
+}

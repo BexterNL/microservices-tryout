@@ -1,0 +1,33 @@
+.tile {
+  padding: 10px;
+  .metric {
+    background-color: #eee;
+    height: 90px;
+    overflow: hidden;
+    .icon {
+      overflow: hidden;
+      opacity: 0.4;
+      i.fa {
+        font-size: 128px;
+      }
+    }
+    h1 {
+      float: right;
+      font-size: 64px;
+      margin: 10px;
+      margin-right: 30px;
+    }
+  }
+  .blue {
+    background-color: #007bff;
+  }
+  .purple {
+    background-color: #6610f2;
+  }
+  .cyan {
+    background-color: #17a2b8;
+  }
+  .green {
+    background-color: #28a745;
+  }
+}
