@@ -134,3 +134,22 @@ The database must exist and the user must have enough permissions to run migrati
     "DefaultConnection": "DATA SOURCE={server-name-or-ip};Initial Catalog={database-name};User ID={username};Password={password};"
   }
 ```
+
+### Connect service - HexMaster.Keesz.Connect
+
+This project (along with all other microservices projects) require additional configuration
+which are stored in the user secrets (right click a project in visual studio, choose user secrets)
+
+```
+{
+  "Kestrel:Certificates:Development:Password": "password-for-dev-certificate",
+  "ApplicationSettings:MongoDbConnectionString": "mongodb://username:password@mongo",
+  "ApplicationSettings:IdentityServerUrl": "http://url-to-identity-server",
+  "ApplicationSettings:EventBus:SubscriptionClientName": "event-bus-client-name (free to define)",
+  "ApplicationSettings:EventBus:EventBusUserName": "rabbitmq",
+  "ApplicationSettings:EventBus:EventBusRetryCount": "5",
+  "ApplicationSettings:EventBus:EventBusPassword": "rabbitmq",
+  "ApplicationSettings:EventBus:EventBusConnection": "rabbitmq",
+  "ApplicationSettings:EventBus:AzureServiceBusEnabled": "False"
+}
+```
